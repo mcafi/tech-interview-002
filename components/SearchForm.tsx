@@ -9,10 +9,10 @@ type SearchFormProps = {
 };
 
 type Filters = {
-  priceFrom: number | null;
-  priceTo: number | null;
-  ratingFrom: number | null;
-  ratingTo: number | null;
+  priceFrom: string | null;
+  priceTo: string | null;
+  ratingFrom: string | null;
+  ratingTo: string | null;
   category: string;
 };
 
@@ -47,45 +47,50 @@ const SearchForm: FC<SearchFormProps> = ({ categories }) => {
 
   return (
     <form
-      className="flex flex-col gap-4 md:flex-row items-end"
+      className="flex flex-col gap-5 md:flex-row justify-around md:items-end"
       onSubmit={handleSubmit}
     >
-      <NumberInputWrapper
-        name="priceFrom"
-        placeholder="Price from"
-        label="Price from"
-        value={filters.priceFrom}
-        onChange={(value) =>
-          setFilters((filters) => ({ ...filters, priceFrom: value }))
-        }
-      />
-      <NumberInputWrapper
-        name="priceTo"
-        placeholder="Price to"
-        label="Price to"
-        value={filters.priceTo}
-        onChange={(value) =>
-          setFilters((filters) => ({ ...filters, priceTo: value }))
-        }
-      />
-      <NumberInputWrapper
-        name="ratingFrom"
-        placeholder="Rating from"
-        label="Rating from"
-        value={filters.ratingFrom}
-        onChange={(value) =>
-          setFilters((filters) => ({ ...filters, ratingFrom: value }))
-        }
-      />
-      <NumberInputWrapper
-        name="ratingTo"
-        placeholder="Rating to"
-        label="Rating to"
-        value={filters.ratingTo}
-        onChange={(value) =>
-          setFilters((filters) => ({ ...filters, ratingTo: value }))
-        }
-      />
+      <div className="flex gap-3 flex-1">
+        <NumberInputWrapper
+          name="priceFrom"
+          placeholder="Price from"
+          label="Price from"
+          value={filters.priceFrom}
+          onChange={(value) =>
+            setFilters((filters) => ({ ...filters, priceFrom: value }))
+          }
+        />
+        <NumberInputWrapper
+          name="priceTo"
+          placeholder="Price to"
+          label="Price to"
+          value={filters.priceTo}
+          onChange={(value) =>
+            setFilters((filters) => ({ ...filters, priceTo: value }))
+          }
+        />
+      </div>
+      <div className="flex gap-3 flex-1">
+        <NumberInputWrapper
+          name="ratingFrom"
+          placeholder="Rating from"
+          label="Rating from"
+          value={filters.ratingFrom}
+          onChange={(value) =>
+            setFilters((filters) => ({ ...filters, ratingFrom: value }))
+          }
+        />
+        <NumberInputWrapper
+          name="ratingTo"
+          placeholder="Rating to"
+          label="Rating to"
+          value={filters.ratingTo}
+          onChange={(value) =>
+            setFilters((filters) => ({ ...filters, ratingTo: value }))
+          }
+        />
+      </div>
+
       <div className="flex flex-col">
         <label htmlFor={categorySelectId}>Category</label>
         <select

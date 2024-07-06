@@ -5,7 +5,7 @@ interface NumberInputWrapperProps {
   name: string;
   placeholder: string;
   label: string;
-  value: number | null;
+  value: string | null;
   onChange: (value: string) => void;
 }
 
@@ -24,7 +24,7 @@ const NumberInputWrapper: FC<NumberInputWrapperProps> = ({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full min-w-[100px] md:max-w-[100px]">
       <label htmlFor={inputId}>{label}</label>
       <input
         className="h-8 px-2 rounded text-black"
