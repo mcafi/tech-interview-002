@@ -1,7 +1,8 @@
+import { Product } from "@/types/Product";
 import React, { createContext, useContext, useState } from "react";
 
 const ProductsContext = createContext({
-  data: [],
+  data: [] as Product[],
   setData: (_) => {},
 });
 

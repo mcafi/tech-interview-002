@@ -6,7 +6,7 @@ interface NumberInputWrapperProps {
   placeholder: string;
   label: string;
   value: number | null;
-  onChange: (value: number) => void;
+  onChange: (value: string) => void;
 }
 
 const NumberInputWrapper: FC<NumberInputWrapperProps> = ({
@@ -19,7 +19,7 @@ const NumberInputWrapper: FC<NumberInputWrapperProps> = ({
   const inputId = useId();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(event.target.value);
+    const newValue = event.target.value;
     onChange(newValue);
   };
 
@@ -28,9 +28,9 @@ const NumberInputWrapper: FC<NumberInputWrapperProps> = ({
       <label htmlFor={inputId}>{label}</label>
       <input
         className="h-8 px-2 rounded text-black"
+        name={name}
         id={inputId}
-        type="number"
-        value={String(value)}
+        value={value === null ? "" : String(value)}
         placeholder={placeholder}
         onChange={handleInputChange}
       />

@@ -11,6 +11,8 @@ type SearchFormProps = {
 type Filters = {
   priceFrom: number | null;
   priceTo: number | null;
+  ratingFrom: number | null;
+  ratingTo: number | null;
   category: string;
 };
 
@@ -19,16 +21,26 @@ const SearchForm: FC<SearchFormProps> = ({ categories }) => {
   const [filters, setFilters] = useState<Filters>({
     priceFrom: null,
     priceTo: null,
+    ratingFrom: null,
+    ratingTo: null,
     category: "",
   });
 
-  const { data, setData } = useProductsContext();
+  const { setData } = useProductsContext();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Add your logic here to handle form submission
     console.log("Search");
-    const res = await fetch("http://localhost:3000/api/search");
+    const searchParams = new URLSearchParams();
+    Object.keys(filters).forEach((key) => {
+      if (filters[key as keyof Filters]) {
+        searchParams.append(key, String(filters[key as keyof Filters]));
+      }
+    });
+    const res = await fetch(
+      `http://localhost:3000/api/search?${searchParams.toString()}`
+    );
     const data = await res.json();
     setData(data.products);
   };
@@ -54,6 +66,24 @@ const SearchForm: FC<SearchFormProps> = ({ categories }) => {
         value={filters.priceTo}
         onChange={(value) =>
           setFilters((filters) => ({ ...filters, priceTo: value }))
+        }
+      />
+      <NumberInputWrapper
+        name="ratingFrom"
+        placeholder="Rating from"
+        label="Rating from"
+        value={filters.ratingFrom}
+        onChange={(value) =>
+          setFilters((filters) => ({ ...filters, ratingFrom: value }))
+        }
+      />
+      <NumberInputWrapper
+        name="ratingTo"
+        placeholder="Rating to"
+        label="Rating to"
+        value={filters.ratingTo}
+        onChange={(value) =>
+          setFilters((filters) => ({ ...filters, ratingTo: value }))
         }
       />
       <div className="flex flex-col">
