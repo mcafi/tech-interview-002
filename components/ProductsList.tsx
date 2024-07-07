@@ -1,6 +1,7 @@
 import { useProductsContext } from "@/context/productsContext";
 import { ProductItem } from "./ProductItem";
 import { Product } from "@/types/Product";
+import Link from "next/link";
 
 function ProductsListText(data: Product[] | null) {
   if (!data) {
@@ -14,9 +15,11 @@ function ProductsListText(data: Product[] | null) {
 
 const ProductsList = () => {
   const { data } = useProductsContext();
-  console.log(data);
   return (
-    <div className="container">
+    <div className="container mx-auto">
+      <Link className="underline" href="/history">
+        Go to History page
+      </Link>
       <p className="mb-6">{ProductsListText(data)}</p>
       {data && (
         <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap gap-5">

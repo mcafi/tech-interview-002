@@ -22,8 +22,7 @@ const SearchForm: FC<SearchFormProps> = ({ categories }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Add your logic here to handle form submission
-    console.log("Search");
+
     const searchParams = new URLSearchParams();
     Object.keys(filters).forEach((key) => {
       if (filters[key as keyof Filters]) {

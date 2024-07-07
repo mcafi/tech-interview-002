@@ -1,7 +1,7 @@
 "use client";
 
 import { SavedSearch } from "@/types/Filters";
-import { clear } from "console";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function HistoryPage() {
@@ -22,7 +22,10 @@ export default function HistoryPage() {
   return (
     <div>
       <div className="container m-auto p-4">
-        <h1 className="text-xl">History Page</h1>
+        <h1 className="text-2xl">History Page</h1>
+        <Link className="underline" href="/">
+          Go back to homepage
+        </Link>
       </div>
       <div className="container m-auto p-4">
         {searches && searches.length > 0 && (

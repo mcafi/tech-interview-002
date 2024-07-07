@@ -6,7 +6,7 @@ import { ProductsProvider } from "@/context/productsContext";
 export default function Home() {
   return (
     <ProductsProvider>
-      <main className="flex min-h-screen flex-col items-center p-4">
+      <main className="min-h-screen ">
         <Navbar />
         <ProductsList />
       </main>

@@ -1,5 +1,5 @@
 import { Product } from "@/types/Product";
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const ProductsContext = createContext({
   data: [] as Product[] | null,

@@ -1,11 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 
-interface NavbarProps {
-  // Define your component props here
-}
-
-const Navbar: FC<NavbarProps> = () => {
+const Navbar = () => {
   const [categories, setCategories] = useState([]);
 
   const loadCategories = async () => {
@@ -19,7 +15,7 @@ const Navbar: FC<NavbarProps> = () => {
   }, [categories]);
 
   return (
-    <div className="container mb-8">
+    <div className="container my-8 mx-auto">
       <SearchForm categories={categories} />
     </div>
   );

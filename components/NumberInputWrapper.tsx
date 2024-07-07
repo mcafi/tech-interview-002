@@ -1,11 +1,12 @@
 "use client";
-import React, { ChangeEvent, FC, useId } from "react";
+import { ChangeEvent, FC, useId } from "react";
 
 interface NumberInputWrapperProps {
   name: string;
   placeholder: string;
   label: string;
   value: string | null;
+  // eslint-disable-next-line no-unused-vars
   onChange: (value: string) => void;
 }
 
