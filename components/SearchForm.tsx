@@ -3,19 +3,11 @@ import { Category } from "@/types/Category";
 import React, { FC, useId, useState } from "react";
 import NumberInputWrapper from "./NumberInputWrapper";
 import { useProductsContext } from "@/context/productsContext";
+import { Filters, SavedSearch } from "@/types/Filters";
 
 type SearchFormProps = {
   categories: Category[];
 };
-
-type Filters = {
-  priceFrom: string | null;
-  priceTo: string | null;
-  ratingFrom: string | null;
-  ratingTo: string | null;
-  category: string;
-};
-
 const SearchForm: FC<SearchFormProps> = ({ categories }) => {
   const categorySelectId = useId();
   const [filters, setFilters] = useState<Filters>({
@@ -43,6 +35,14 @@ const SearchForm: FC<SearchFormProps> = ({ categories }) => {
     );
     const data = await res.json();
     setData(data.products);
+
+    const savedSearchesJSON = localStorage.getItem("savedSearches");
+    const savedSearches: SavedSearch[] = savedSearchesJSON
+      ? JSON.parse(savedSearchesJSON)
+      : [];
+    savedSearches.push({ ...filters, count: data.products.length });
+
+    localStorage.setItem("savedSearches", JSON.stringify(savedSearches));
   };
 
   return (
